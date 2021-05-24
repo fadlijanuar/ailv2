@@ -16,7 +16,8 @@
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900">Welcome Back!</h1>
+                    <h2 class="h5 text-gray-900 mb-4">AIL (Arsip Induk Langganan)</h2>
                   </div>
                   <form action="{{ route('login') }}" method="post" class="user">
                     @csrf

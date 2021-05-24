@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+// Router User
+Route::get('/admin/user', [UserController::class, 'index'])->name('user');
+Route::post('/admin/user', [UserController::class, 'add']);
 
-
-// Route::get('/admin', function () {
-//     return view('admin.index');
-// });
+// Router Unit
+Route::get('/admin/unit', [UnitController::class, 'index'])->name('unit');

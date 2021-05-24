@@ -63,7 +63,8 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required|min:3|max:35',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'nip' => 'required'
         ];
 
         $messages = [
@@ -74,7 +75,8 @@ class AuthController extends Controller
             'email.email' => 'Email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
             'password.required' => 'Password wajib diisi',
-            'password.confirmed' => 'Password tidak sama dengan konfirmasi password'
+            'password.confirmed' => 'Password tidak sama dengan konfirmasi password',
+            'nip.required' => 'NIP wajib diisi'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -86,6 +88,7 @@ class AuthController extends Controller
         $user = new User;
         $user->name = ucwords(strtolower($request->name));
         $user->email = strtolower($request->email);
+        $user->nip = $request->nip;
         $user->password = Hash::make($request->password);
         $user->email_verified_at = \Carbon\Carbon::now();
         $simpan = $user->save();

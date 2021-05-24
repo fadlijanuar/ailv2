@@ -32,6 +32,9 @@
                   <input type="text" class="form-control form-control-user" name='name' id="name" placeholder="Full Name">
                 </div>
                 <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name='nip' id="nip" placeholder="NIP">
+                </div>
+                <div class="form-group">
                   <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
