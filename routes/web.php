@@ -31,7 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Router User
 Route::get('/admin/user', [UserController::class, 'index'])->name('user');
-Route::post('/admin/user', [UserController::class, 'add']);
+Route::post('/admin/user', [UserController::class, 'add'])->name('addUser');
+Route::delete('/admin/user', [UserController::class, 'delete'])->name('deleteUser');
 
 // Router Unit
 Route::get('/admin/unit', [UnitController::class, 'index'])->name('unit');

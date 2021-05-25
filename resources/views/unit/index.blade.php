@@ -23,6 +23,21 @@
             <th>Actions</th>
           </tr>
         </thead>
+        <tbody>
+          @foreach($units as $key => $unit)
+          <tr>
+            <td>{{ $key + 1 }}</td>
+            <td>{{ $unit->nama_kantor_induk }}</td>
+            <td>{{ $unit->nama_unit_level2 }}</td>
+            <td>{{ $unit->nama_unit_level3 }}</td>
+            <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
+            <td>
+              <a href="#" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+              <a href="#" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
       </table>
     </div>
   </div>
