@@ -37,3 +37,4 @@ Route::delete('/admin/user/{id}', [UserController::class, 'delete']);
 
 // Router Unit
 Route::get('/admin/unit', [UnitController::class, 'index'])->name('unit');
+Route::get('/admin/unit/add', [UnitController::class, 'showFromAddUnit']);

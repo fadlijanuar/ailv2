@@ -8,7 +8,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="">Tambah Unit</a>
+    <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/unit/add') }}">Tambah Unit</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">

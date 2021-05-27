@@ -22,4 +22,13 @@ class UnitController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function showFromAddUnit()
+    {
+        if (Auth::check()) {
+            return view('unit.add');
+        } else {
+            return redirect()->route('login');
+        }
+    }
 }
