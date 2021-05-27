@@ -57,6 +57,7 @@
   </div>
 
   @include('layout.js')
+  @yield('script')
 </body>
 
 </html>
