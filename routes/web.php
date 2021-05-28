@@ -46,4 +46,5 @@ Route::get('/admin/unit/add/kantorinduk', [UnitController::class, 'showFromAddUn
 Route::post('/admin/unit/add/kantorinduk', [UnitController::class, 'addKantorInduk'])->name('addKantorInduk');
 Route::get('/admin/unit/add', [UnitController::class, 'showFromAddUnit']);
 Route::delete('/admin/unit/{id}', [UnitController::class, 'delete']);
-Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit'])->name('showFormEdit');
+Route::put('/admin/unit/edit', [UnitController::class, 'update'])->name('editUnit');
+Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit']);

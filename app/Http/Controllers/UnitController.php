@@ -114,7 +114,7 @@ class UnitController extends Controller
             $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all);
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
             $kantor_induk = new KantorInduk;
@@ -162,7 +162,7 @@ class UnitController extends Controller
             $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all);
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
             $unit_level2 = new UnitLevel2();
@@ -209,7 +209,7 @@ class UnitController extends Controller
             $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput($request->all);
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
             }
 
             $unit_level3 = new UnitLevel3();
@@ -248,9 +248,60 @@ class UnitController extends Controller
     public function showFormEdit($id)
     {
         if (Auth::check()) {
-            // TODO Get Unit By ID
+            $unit_level3 = UnitLevel3::find($id);
+            $unit_level2 = UnitLevel2::find($unit_level3->unit_level2_id);
+            $kantor_induk = KantorInduk::find($unit_level2->kantor_induk_id);
+            $kantor_induks = KantorInduk::all();
+            $unit_level2s = UnitLevel2::all();
+            return view('unit.edit', [
+                'unit_level3' => $unit_level3,
+                'unit_level2' => $unit_level2,
+                'kantor_induk' => $kantor_induk,
+                'kantor_induks' => $kantor_induks,
+                'unit_level2s' => $unit_level2s
+            ]);
         } else {
-            return redirect()->route('unit');
+            return redirect()->route('login');
+        }
+    }
+
+    public function update(Request $request)
+    {
+        // cek auth user
+        if (Auth::check()) {
+            // validasi field yang kosong
+            $rules = [
+                'unit_level2' => 'required',
+                'unit_level3' => 'required',
+            ];
+
+            $messages = [
+                'unit_level2.required' => 'Unit level 2 wajib diisi',
+                'unit_level3.required' => 'Unit level 3 wajib diisi'
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            // jika validasi gagal
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
+
+            // setelah tidak gagal maka akan di simpan di db
+            $unit_level3 = UnitLevel3::find($request->id);
+            $unit_level3->nama_unit_level3 = $request->unit_level3;
+            $unit_level3->unit_level2_id = $request->unit_level2;
+            $simpan_unit_level3 = $unit_level3->save();
+
+            if ($simpan_unit_level3) {
+                Session::flash('success', 'Data unit berhasil diubah!');
+                return redirect()->route('unit');
+            } else {
+                Session::flash('errors', ['' => 'Data unit berhasil diubah!']);
+                return redirect()->route('unit');
+            }
+        } else {
+            return redirect()->route('login');
         }
     }
 }
