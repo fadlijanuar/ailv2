@@ -24,7 +24,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Menu
       </div>
 
       <!-- Nav Item - User -->
@@ -43,7 +43,7 @@
 
       <!-- Nav Item - Unit -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('unit') }}">
+        <a class="nav-link" href="{{ route('pelanggan') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Pelanggan</span></a>
       </li>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,8 @@ Route::get('/admin/unit/add', [UnitController::class, 'showFromAddUnit']);
 Route::delete('/admin/unit/{id}', [UnitController::class, 'delete']);
 Route::put('/admin/unit/edit', [UnitController::class, 'update'])->name('editUnit');
 Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit']);
+
+// Router Pelanggan
+Route::get('/admin/pelanggan', [CustomerController::class, 'index'])->name('pelanggan');
+Route::get('/admin/pelanggan/add', [CustomerController::class, 'showAddForm']);
+Route::post('/admin/pelanggan/add', [CustomerController::class, 'add'])->name('addPelanggan');
