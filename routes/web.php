@@ -37,4 +37,13 @@ Route::delete('/admin/user/{id}', [UserController::class, 'delete']);
 
 // Router Unit
 Route::get('/admin/unit', [UnitController::class, 'index'])->name('unit');
+Route::post('/admin/unit/add', [UnitController::class, 'add'])->name('addUnit');
+Route::get('/admin/unit/add/unitlevel3', [UnitController::class, 'showFromAddUnitLevel3']);
+Route::post('/admin/unit/add/unitlevel3', [UnitController::class, 'addUnitLevel3'])->name('addUnitLevel3');
+Route::get('/admin/unit/add/unitlevel2', [UnitController::class, 'showFromAddUnitLevel2']);
+Route::post('/admin/unit/add/unitlevel2', [UnitController::class, 'addUnitLevel2'])->name('addUnitLevel2');
+Route::get('/admin/unit/add/kantorinduk', [UnitController::class, 'showFromAddUnitKantorInduk']);
+Route::post('/admin/unit/add/kantorinduk', [UnitController::class, 'addKantorInduk'])->name('addKantorInduk');
 Route::get('/admin/unit/add', [UnitController::class, 'showFromAddUnit']);
+Route::delete('/admin/unit/{id}', [UnitController::class, 'delete']);
+Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit'])->name('showFormEdit');
