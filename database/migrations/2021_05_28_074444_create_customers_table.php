@@ -15,6 +15,15 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('id_pel')->unique();
+            $table->string('nama');
+            $table->string('nama_pnj');
+            $table->string('tarif');
+            $table->integer('daya');
+            $table->string('jenis_mk');
+            $table->date('tgl_mutasi');
+            $table->string('jenis_layanan');
+            $table->string('status_dil');
             $table->string('surat_pengajuan')->unique();
             $table->string('identitas_pelanggan')->unique();
             $table->string('formulir_survei')->unique();

@@ -46,10 +46,16 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>No.</th>
-            <th>Surat Pengajuan</th>
-            <th>Identitas Pelanggan</th>
-            <th>Formulir Survey</th>
+            <th>NO.</th>
+            <th>IDPEL</th>
+            <th>NAMA</th>
+            <th>NAMA PNJ</th>
+            <th>TAFIR</th>
+            <th>DAYA</th>
+            <th>MUTASI <span>jenis_mk</span></th>
+            <th>TGL MUTASI</th>
+            <th>JENIS LAYANAN</th>
+            <th>STATUS DIL</th>
             <th>Actions</th>
           </tr>
         </thead>
