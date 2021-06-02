@@ -50,8 +50,8 @@
               </div>
               <div class="form-group">
                 <label for="jenis_mk">Mutasi</label>
-                <select name="jenis_mk" id="jenis_mk">
-                  <option value="">-- Pilih Jenis Mk</option>
+                <select name="jenis_mk" id="jenis_mk" class="form-control">
+                  <option value="">-- Pilih Jenis Mk --</option>
                   <option value="A">A.Pasang Baru</option>
                   <option value="B">B.Perubahan Nama</option>
                   <option value="C">C.Perubahan Alamat</option>
