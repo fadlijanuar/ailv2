@@ -41,11 +41,18 @@
           <span>Unit</span></a>
       </li>
 
-      <!-- Nav Item - Unit -->
+      <!-- Nav Item - Pelanggan -->
       <li class="nav-item">
         <a class="nav-link" href="{{ route('pelanggan') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Pelanggan</span></a>
+      </li>
+
+      <!-- Nav Item - Dokumen Pelanggan -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('dokumen_pelanggan') }}">
+          <i class="fas fa-fw fa-book"></i>
+          <span>Dokumen Pelanggan</span></a>
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->

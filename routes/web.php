@@ -54,3 +54,9 @@ Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit']);
 Route::get('/admin/pelanggan', [CustomerController::class, 'index'])->name('pelanggan');
 Route::get('/admin/pelanggan/add', [CustomerController::class, 'showAddForm']);
 Route::post('/admin/pelanggan/add', [CustomerController::class, 'add'])->name('addPelanggan');
+
+
+// Router Dokumen Pelanggan
+Route::get('/admin/dokumen_pelanggan', 'App\Http\Controllers\DokumenController@index')->name('dokumen_pelanggan');
+Route::get('/admin/dokumen_pelanggan/add', [DokumenController::class, 'showAddForm']);
+Route::post('/admin/dokumen_pelanggan/add', [DokumenController::class, 'add'])->name('add_dokumen_pelanggan');
