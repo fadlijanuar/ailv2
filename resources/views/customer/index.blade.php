@@ -67,13 +67,18 @@
             <td>{{ $row['nama'] }}</td>
             <td>{{ $row['nama_pnj'] }}</td>
             <td>{{ $row['tarif'] }}</td>
-            <td>{{ $row['data'] }}</td>
+            <td>{{ $row['daya'] }}</td>
             <td>{{ $row['jenis_mk'] }}</td>
-            <td>{{ $row['tgl_mutasi'] }}</td>
+            <td>{{ date('d M Y', strtotime($row['tgl_mutasi'])) }}</td>
             <td>{{ $row['jenis_layanan'] }}</td>
             <td>{{ $row['status_dil'] }}</td>
             <td>
-              <a class="btn btn-warning btn-sm btn-circle" href="{{ url('admin/customer/edit/'.$row['id']) }}"><i class="fa fa-edit"></i></a>
+              <form action="{{ url('admin/customer/delete/' . $row['id']) }}" method="post">
+                @csrf
+                @method('delete')
+                <a class="btn btn-warning btn-sm btn-circle" href="{{ url('admin/customer/edit/'.$row['id']) }}"><i class="fa fa-edit"></i></a>
+                <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
+              </form>
             </td>
           </tr>
           @endforeach

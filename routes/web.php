@@ -56,6 +56,7 @@ Route::get('/admin/customer/add', [CustomerController::class, 'showAddForm']);
 Route::post('/admin/customer/add', [CustomerController::class, 'add'])->name('addCustomer');
 Route::get('/admin/customer/edit/{id}', [CustomerController::class, 'showEditForm']);
 Route::post('/admin/customer/edit', [CustomerController::class, 'edit'])->name('editCustomer');
+Route::delete('/admin/customer/delete/{id}', [CustomerController::class, 'delete']);
 
 // Router Dokumen Pelanggan
 Route::get('/admin/dokumen_pelanggan', 'App\Http\Controllers\DokumenController@index')->name('dokumen_pelanggan');
