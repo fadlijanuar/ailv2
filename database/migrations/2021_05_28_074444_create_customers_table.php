@@ -24,16 +24,16 @@ class CreateCustomersTable extends Migration
             $table->date('tgl_mutasi');
             $table->string('jenis_layanan');
             $table->string('status_dil');
-            $table->string('surat_pengajuan')->unique();
-            $table->string('identitas_pelanggan')->unique();
-            $table->string('formulir_survei')->unique();
-            $table->string('jawaban_persetujuan')->unique();
-            $table->string('surat_perjanjian_jual_beli')->unique();
-            $table->string('sertifikat_laik_operasi')->unique();
-            $table->string('kuitansi_pembanyaran')->unique();
-            $table->string('perintah_kerja_pemasangan')->unique();
-            $table->string('berita_acara_pemasangan')->unique();
-            $table->string('dokumen_lain')->unique();
+            $table->string('surat_pengajuan')->unique()->nullable();
+            $table->string('identitas_pelanggan')->unique()->nullable();
+            $table->string('formulir_survei')->unique()->nullable();
+            $table->string('jawaban_persetujuan')->unique()->nullable();
+            $table->string('surat_perjanjian_jual_beli')->unique()->nullable();
+            $table->string('sertifikat_laik_operasi')->unique()->nullable();
+            $table->string('kuitansi_pembanyaran')->unique()->nullable();
+            $table->string('perintah_kerja_pemasangan')->unique()->nullable();
+            $table->string('berita_acara_pemasangan')->unique()->nullable();
+            $table->string('dokumen_lain')->unique()->nullable();
             $table->timestamps();
         });
     }

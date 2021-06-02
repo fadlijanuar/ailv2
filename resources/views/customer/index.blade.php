@@ -39,7 +39,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/pelanggan/add') }}">Tambah Pelanggan</a>
+    <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/customer/add') }}">Tambah Pelanggan</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -60,7 +60,23 @@
           </tr>
         </thead>
         <tbody>
-
+          @foreach($customers as $key => $row)
+          <tr>
+            <td>{{ $key +1 }}</td>
+            <td>{{ $row['id_pel'] }}</td>
+            <td>{{ $row['nama'] }}</td>
+            <td>{{ $row['nama_pnj'] }}</td>
+            <td>{{ $row['tarif'] }}</td>
+            <td>{{ $row['data'] }}</td>
+            <td>{{ $row['jenis_mk'] }}</td>
+            <td>{{ $row['tgl_mutasi'] }}</td>
+            <td>{{ $row['jenis_layanan'] }}</td>
+            <td>{{ $row['status_dil'] }}</td>
+            <td>
+              <a class="btn btn-warning btn-sm btn-circle" href="{{ url('admin/customer/edit/'.$row['id']) }}"><i class="fa fa-edit"></i></a>
+            </td>
+          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

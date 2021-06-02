@@ -43,7 +43,7 @@
 
       <!-- Nav Item - Pelanggan -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('pelanggan') }}">
+        <a class="nav-link" href="{{ route('customer') }}">
           <i class="fas fa-fw fa-users"></i>
           <span>Pelanggan</span></a>
       </li>
