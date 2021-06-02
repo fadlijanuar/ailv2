@@ -23,7 +23,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <form action="{{ route('addPelanggan') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('addCustomer') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="col-md-6">
@@ -78,7 +78,7 @@
                 <input type="text" class="form-control" id="status_dil" name="status_dil" placeholder="Masukan Status DIL">
               </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
 
 
               <div class="form-group">
@@ -130,10 +130,10 @@
                 <label for="dokumen_lain">Dokumen Lain</label>
                 <input type="file" class="form-control-file" id="dokumen_lain" name="dokumen_lain">
               </div>
-            </div>
+            </div> --}}
           </div>
-
-          <button class="btn btn-primary btn-sm" type="submit">
+          <a href="{{ route('customer') }}" class="btn btn-warning">Kembali</a>
+          <button class="btn btn-primary" type="submit">
             Simpan
           </button>
         </form>
