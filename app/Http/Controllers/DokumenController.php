@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Dokumen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DokumenController extends Controller
 {
@@ -14,8 +16,12 @@ class DokumenController extends Controller
      */
     public function index()
     {
-        //
-		echo "ÿes";
+        if (Auth::check()) {
+            $id_pelanggan = Customer::all($columns = ['id_pel']);
+            return view('document.index', ['id_pelanggan' => $id_pelanggan]);
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**

@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('jenis_mk');
             $table->date('tgl_mutasi');
             $table->string('jenis_layanan');
-            $table->string('status_dil');
+            $table->enum('status_dil', ['aktif', 'hapus', 'bongkar']);
             $table->string('surat_pengajuan')->unique()->nullable();
             $table->string('identitas_pelanggan')->unique()->nullable();
             $table->string('formulir_survei')->unique()->nullable();

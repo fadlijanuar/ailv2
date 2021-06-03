@@ -27,31 +27,40 @@
           @csrf
           <div class="row">
             <div class="col-md-6">
-
               <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="nama_pnj">Nama Penanggung Jawaban</label>
                 <input type="text" class="form-control" id="nama_pnj" name="nama_pnj" placeholder="Masukan nama penanggung jawab">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="id_pel">ID Pel</label>
                 <input type="text" class="form-control" id="id_pel" name="id_pel" placeholder="Masukan id pel">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="tarif">Tarif</label>
                 <input type="text" class="form-control" id="tarif" name="tarif" placeholder="Masukan tarif">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="daya">Daya</label>
                 <input type="number" class="form-control" id="daya" name="daya" placeholder="Masukan daya">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="jenis_mk">Mutasi</label>
                 <select name="jenis_mk" id="jenis_mk" class="form-control">
-                  <option value="">-- Pilih Jenis Mk</option>
+                  <option value="">-- Pilih Jenis MK --</option>
                   <option value="A">A.Pasang Baru</option>
                   <option value="B">B.Perubahan Nama</option>
                   <option value="C">C.Perubahan Alamat</option>
@@ -65,17 +74,28 @@
                   <option value="K">K.Faktor Kali Meter</option>
                 </select>
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="tgl_mutasi">Tanggal Mutasi</label>
                 <input type="date" class="form-control" id="tgl_mutasi" name="tgl_mutasi" placeholder="Masukan taggal mutasi">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
                 <input type="text" class="form-control" id="jenis_layanan" name="jenis_layanan" placeholder="Masukan jenis layanan">
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="status_dil">Status DIL</label>
-                <input type="text" class="form-control" id="status_dil" name="status_dil" placeholder="Masukan Status DIL">
+                <select name="status_dil" id="status_dil" class="form-control">
+                  <option value="">-- Pilih Status --</option>
+                  <option value="aktif">Aktif</option>
+                  <option value="hapus">Hapus</option>
+                  <option value="bongkar">Bongkar</option>
+                </select>
               </div>
             </div>
             {{-- <div class="col-md-6">

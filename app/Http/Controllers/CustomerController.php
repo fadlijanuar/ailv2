@@ -13,7 +13,7 @@ class CustomerController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $customers = Customer::all();
+            $customers = Customer::orderByDesc('id')->get();
             return view('customer.index', ['customers' => $customers]);
         } else {
             return redirect()->route('login');
@@ -74,7 +74,6 @@ class CustomerController extends Controller
             return redirect()->route('admin/customer/add');
         }
     }
-
 
     public function showEditForm($id)
     {

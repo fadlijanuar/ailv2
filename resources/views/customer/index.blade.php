@@ -52,7 +52,7 @@
             <th>NAMA PNJ</th>
             <th>TAFIR</th>
             <th>DAYA</th>
-            <th>MUTASI <span>jenis_mk</span></th>
+            <th>Jenis MK</th>
             <th>TGL MUTASI</th>
             <th>JENIS LAYANAN</th>
             <th>STATUS DIL</th>
