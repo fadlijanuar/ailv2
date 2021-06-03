@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -60,5 +61,5 @@ Route::delete('/admin/customer/delete/{id}', [CustomerController::class, 'delete
 
 // Router Dokumen Pelanggan
 Route::get('/admin/dokumen_pelanggan', 'App\Http\Controllers\DokumenController@index')->name('dokumen_pelanggan');
-Route::get('/admin/dokumen_pelanggan/add', [DokumenController::class, 'showAddForm']);
-Route::post('/admin/dokumen_pelanggan/add', [DokumenController::class, 'add'])->name('add_dokumen_pelanggan');
+Route::get('/admin/dokumen_pelanggan/add', [DokumenController::class, 'create']);
+Route::post('/admin/dokumen_pelanggan/add', [DokumenController::class, 'store'])->name('add_dokumen_pelanggan');

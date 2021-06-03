@@ -1,5 +1,5 @@
 @extends('layout.tamplate')
-@section('title', 'List Unit | AIL')
+@section('title', 'Dokumen Pelanggan | AIL')
 @section('content')
 
 
@@ -39,10 +39,10 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/dokumen_pelanggan/add') }}">Tambah Dokumen Pelanggan</a>
+    <p class="m-0 font-weight-bold">Tambah Dokumen Pelanggan</p>
   </div>
   <div class="card-body">
-    <form action="" method="post">
+    <form action="{{ route('add_dokumen_pelanggan') }}" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -116,6 +116,8 @@
           </div>
         </div>
       </div>
+      <a href="{{ route('dokumen_pelanggan') }}" class="btn btn-warning">Kembali</a>
+      <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
   </div>
 </div>
