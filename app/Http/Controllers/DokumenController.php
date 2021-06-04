@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -20,8 +21,8 @@ class DokumenController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $id_pelanggan = Customer::all($columns = ['id_pel']);
-            return view('document.index', ['id_pelanggan' => $id_pelanggan]);
+            $customers = Customer::all();
+            return view('document.index', ['customers' => $customers]);
         } else {
             return redirect()->route('login');
         }
@@ -51,11 +52,31 @@ class DokumenController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'id_pel' => 'required'
+            'id_pel' => 'required',
+            'surat_pengajuan' => 'mimes:pdf,doc,docx|max:500',
+            'identitas_pelanggan' => 'mimes:pdf,doc,docx|max:500',
+            'formulir_survei' => 'mimes:pdf,doc,docx|max:500',
+            'jawaban_persetujuan' => 'mimes:pdf,doc,docx|max:500',
+            'surat_perjanjian_jual_beli' => 'mimes:pdf,doc,docx|max:500',
+            'surat_laik_operasi' => 'mimes:pdf,doc,docx|max:500',
+            'kuitansi_pembayaran' => 'mimes:pdf,doc,docx|max:500',
+            'perintah_kerja_pemasangan' => 'mimes:pdf,doc,docx|max:500',
+            'berita_acara_pemasangan' => 'mimes:pdf,doc,docx|max:500',
+            'dokumen_lain' => 'mimes:pdf,doc,docx|max:500',
         ];
 
         $messages = [
-            'id_pel.required' => "ID pelanggan wajib diisi"
+            'id_pel.required' => "ID pelanggan wajib diisi",
+            'surat_pengajuan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'identitas_pelanggan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'formulir_survei.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'jawaban_persetujuan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'surat_perjanjian_jual_beli.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'surat_laik_operasi.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'kuitansi_pembayaran.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'perintah_kerja_pemasangan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'berita_acara_pemasangan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
+            'dokumen_lain.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -114,6 +135,26 @@ class DokumenController extends Controller
         $dokumen_lain->move(public_path("document_pelanggan/dokumen_lain"), $dokumen_lain_name);
 
         // TODO: simpan ke db
+        $customer = Customer::where('id_pel', $request->id_pel)->first();
+        $customer->surat_pengajuan = $surat_pengajuan_name;
+        $customer->identitas_pelanggan = $identitas_pelanggan_name;
+        $customer->formulir_survei = $formulir_survei_name;
+        $customer->jawaban_persetujuan = $jawaban_persetujuan_name;
+        $customer->surat_perjanjian_jual_beli = $surat_perjanjian_jual_beli_name;
+        $customer->sertifikat_laik_operasi = $surat_laik_operasi_name;
+        $customer->kuitansi_pembayaran = $kuitansi_pembayaran_name;
+        $customer->perintah_kerja_pemasangan = $perintah_kerja_pemasangan_name;
+        $customer->berita_acara_pemasangan = $berita_acara_pemasangan_name;
+        $customer->dokumen_lain = $dokumen_lain_name;
+        $isSave = $customer->save();
+
+        if ($isSave) {
+            Session::flash('success', 'Berhasil menambahkan dokument pelanggan');
+            return redirect()->route('dokumen_pelanggan');
+        } else {
+            Session::flash('error', 'Gagal menambahkan dokument pelanggan!');
+            return redirect()->route('dokumen_pelanggan');
+        }
     }
 
     /**

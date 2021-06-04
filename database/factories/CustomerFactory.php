@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\User;
 use Faker\Core\Number;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,6 +27,7 @@ class CustomerFactory extends Factory
             'nama' => $this->faker->name(),
             'nama_pnj' => $this->faker->name(),
             'id_pel' => $this->faker->randomNumber(5, true),
+            'user_id' => $this->faker->randomElement(User::all(['id'])),
             'daya' => '900',
             'tarif' => 'RM',
             'jenis_mk' => 'A',

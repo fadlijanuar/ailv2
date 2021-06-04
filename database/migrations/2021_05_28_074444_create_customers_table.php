@@ -16,6 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('id_pel')->unique();
+            $table->foreignId('user_id');
             $table->string('nama');
             $table->string('nama_pnj');
             $table->string('tarif');
@@ -30,7 +31,7 @@ class CreateCustomersTable extends Migration
             $table->string('jawaban_persetujuan')->unique()->nullable();
             $table->string('surat_perjanjian_jual_beli')->unique()->nullable();
             $table->string('sertifikat_laik_operasi')->unique()->nullable();
-            $table->string('kuitansi_pembanyaran')->unique()->nullable();
+            $table->string('kuitansi_pembayaran')->unique()->nullable();
             $table->string('perintah_kerja_pemasangan')->unique()->nullable();
             $table->string('berita_acara_pemasangan')->unique()->nullable();
             $table->string('dokumen_lain')->unique()->nullable();

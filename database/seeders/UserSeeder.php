@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -21,7 +23,9 @@ class UserSeeder extends Seeder
             'nip' => '123',
             'unit_id' => 0,
             'password' => Hash::make('admin'),
-            'email_verified_at' => \Carbon\Carbon::now()
+            'remember_token' => Str::random(10),
+            'email_verified_at' => \Carbon\Carbon::now(),
         ]);
+        User::factory()->count(5)->create();
     }
 }

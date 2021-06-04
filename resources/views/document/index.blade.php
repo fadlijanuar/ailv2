@@ -42,81 +42,49 @@
     <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/dokumen_pelanggan/add') }}">Tambah Dokumen Pelanggan</a>
   </div>
   <div class="card-body">
-    <form action="" method="post">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="id_pel">ID Pelanggan</label>
-            <input type="number" name="id_pel" list="list_id_pel" class="form-control" placeholder="Masukan Id Pelanggan">
-            <datalist id="list_id_pel">
-              @foreach($id_pelanggan as $key => $row)
-              <option value="{{ $row['id_pel'] }}">{{ $row['id_pel'] }}</option>
-              @endforeach
-            </datalist>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="surat_pengajuan">Surat Pengajuan Permintaan Penyambungan Baru / Perubahan Daya / Perubahan Data Pelanggan</label>
-            <input type="file" class="form-control-file" id="surat_pengajuan" name="surat_pengajuan">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="identitas_pelanggan">Identitas Pelanggan</label>
-            <input type="file" class="form-control-file" id="identitas_pelanggan" name="identitas_pelanggan">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="formulir_survei">Formulir Survey Permohonan Listrik</label>
-            <input type="file" class="form-control-file" id="formulir_survei" name="formulir_survei">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="jawaban_persetujuan">Jawaban Persetujuan Penyambungan Baru / Perubahan Daya / Perubahan Data Pelanggan</label>
-            <input type="file" class="form-control-file" id="jawaban_persetujuan" name="jawaban_persetujuan">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="surat_perjanjian_jual_beli">Surat Perjanjian Jual Beli Tenaga Listrik (SPJBTL) /Suplemen Perjanjian Jual Beli Tenaga Listrik</label>
-            <input type="file" class="form-control-file" id="surat_perjanjian_jual_beli" name="surat_perjanjian_jual_beli">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="surat_laik_operasi">Sertifikat Laik Operasi</label>
-            <input type="file" class="form-control-file" id="surat_laik_operasi" name="surat_laik_operasi">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="kuitansi_pembayaran">Kuitansi Pembayaran</label>
-            <input type="file" class="form-control-file" id="kuitansi_pembayaran" name="kuitansi_pembayaran">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="perintah_kerja_pemasangan">Perintah Kerja Pemasangan / Penyambungan / Pembongkaran SL / Penyambungan Sementara</label>
-            <input type="file" class="form-control-file" id="perintah_kerja_pemasangan" name="perintah_kerja_pemasangan">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="berita_acara_pemasangan">Berita Acara Pemasangan / Penyambungan / Pembongkaran Sambungan Tenaga Listrik</label>
-            <input type="file" class="form-control-file" id="berita_acara_pemasangan" name="berita_acara_pemasangan">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="dokumen_lain">Dokumen Lain</label>
-            <input type="file" class="form-control-file" id="dokumen_lain" name="dokumen_lain">
-          </div>
-        </div>
-      </div>
-    </form>
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>ID Pel</th>
+            <th>Surat Pengajuan</th>
+            <th>Identitas Pelanggan</th>
+            <th>Formulir Survei</th>
+            <th>Jawaban Persetujuan</th>
+            <th>Surat Perjanjian Jual Beli</th>
+            <th>Surat Laik Operasi</th>
+            <th>Kuitansi Pembanyaran</th>
+            <th>Perintah Kerja Pemasangam</th>
+            <th>Berita Acara Pemasangan</th>
+            <th>Dokumen Lain</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($customers as $key => $row)
+          <tr>
+            <td>{{ $key+1 }}</td>
+            <td>{{ $row->id_pel }}</td>
+            <td class="text-center">{!! $row->surat_pengajuan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->identitas_pelanggan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->formulir_survei ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->jawaban_persetujuan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->surat_perjanjian_jual_beli ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->sertifikat_laik_operasi ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->kuitansi_pembayaran ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->perintah_kerja_pemasangan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->berita_acara_pemasangan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">{!! $row->dokumen_lain ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
+            <td class="text-center">
+              <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fa fa-info"></i></a>
+              <a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 @endsection

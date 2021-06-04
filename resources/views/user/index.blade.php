@@ -68,8 +68,8 @@
                 <td>{{ $user['name'] }}</td>
                 <td>{{ $user['nip'] }}</td>
                 <td>{{ $user['email'] }}</td>
+                {{-- TODO: Memperbaiki Colonm Password --}}
                 <td>{{ $user['password'] }}</td>
-
                 @foreach($unit_level3 as $keyUnit => $unit)
 
                 @if($unit->id == $user['unit_id'])
