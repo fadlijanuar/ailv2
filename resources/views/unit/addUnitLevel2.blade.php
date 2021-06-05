@@ -38,6 +38,7 @@
             <label for="unit_level2">Nama Unit Level 2</label>
             <input type="text" class="form-control" name="unit_level2" id="unit_level2" placeholder="Masukan nama unit level 2">
           </div>
+          <a href="{{ route('unit') }}" class="btn btn-warning btn-sm text-dark">Kembali</a>
           <button class="btn btn-primary btn-sm" type="submit">
             Simpan
           </button>

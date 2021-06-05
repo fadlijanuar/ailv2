@@ -37,6 +37,7 @@
             <label for="kantor_induk">Nama Kantor Induk</label>
             <input type="text" class="form-control" name="kantor_induk" id="kantor_induk" placeholder="Masukan nama kantor induk">
           </div>
+          <a href="{{ route('unit') }}" class="btn btn-warning btn-sm text-dark">Kembali</a>
           <button class="btn btn-primary btn-sm" type="submit">
             Simpan
           </button>

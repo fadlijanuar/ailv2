@@ -1,5 +1,5 @@
 <?php
-
+// TODO: Memperbaiki edit dan delete level 2 dan level 1
 namespace App\Http\Controllers;
 
 use App\Models\KantorInduk;
@@ -16,14 +16,24 @@ class UnitController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $units = DB::table('kantor_induk')
+            $unit_level3 = DB::table('kantor_induk')
                 ->join('unit_level2', 'kantor_induk.id', '=', 'unit_level2.kantor_induk_id')
                 ->join('unit_level3', 'unit_level2.id', '=', 'unit_level3.unit_level2_id')
                 ->select('kantor_induk.*', 'unit_level2.*', 'unit_level3.*')
                 ->where('deleted_at', '=', null)
                 ->orderBy('unit_level3.id', 'desc')
                 ->get();
-            return view('unit.index', ['units' => $units]);
+            $unit_level2 = DB::table('unit_level2')
+                ->join('kantor_induk', 'unit_level2.kantor_induk_id', '=', 'kantor_induk.id')
+                ->select('kantor_induk.*', 'unit_level2.*')
+                ->orderBy('unit_level2.id', 'desc')
+                ->get();
+            $kantor_induk = KantorInduk::orderByDesc('id')->get();
+            return view('unit.index', [
+                'units' => $unit_level3,
+                'unit_level2' => $unit_level2,
+                'kantor_induk' => $kantor_induk
+            ]);
         } else {
             return redirect()->route('login');
         }
