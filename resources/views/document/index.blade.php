@@ -77,7 +77,7 @@
             <td class="text-center">{!! $row->berita_acara_pemasangan ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
             <td class="text-center">{!! $row->dokumen_lain ? '<i class="fas fa-check text-success"></i>' : '' !!}</td>
             <td class="text-center">
-              <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fa fa-info"></i></a>
+              <a href="{{ url('admin/dokumen_pelanggan/'.$row->id) }}" class="btn btn-info btn-circle btn-sm"><i class="fa fa-info"></i></a>
               <a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
             </td>
           </tr>

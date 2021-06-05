@@ -87,7 +87,6 @@ class CustomerController extends Controller
 
     public function edit(Request $request)
     {
-        // TODO simpan data 
         $rules = [
             'nama' => 'required',
             'nama_pnj' => 'required',

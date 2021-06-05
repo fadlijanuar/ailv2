@@ -163,9 +163,14 @@ class DokumenController extends Controller
      * @param  \App\Models\Dokumen  $dokumen
      * @return \Illuminate\Http\Response
      */
-    public function show(Dokumen $dokumen)
+    public function show($id)
     {
-        //
+        if (Auth::check()) {
+            $customer = Customer::find($id);
+            return view('document.detail', ['customer' => $customer]);
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**
