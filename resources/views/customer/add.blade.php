@@ -15,8 +15,9 @@
 </div>
 @endif
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Tambah Pelanggan</h1>
+<div class="d-sm-flex align-items-center mb-4">
+  <a href="{{ route('customer') }}" class=" mr-2 shadow-lg btn btn-warning btn-sm"><i class="fas fa-arrow-left"></i></a>
+  <h1 class="h4 mb-0 text-gray-800">Tambah Pelanggan</h1>
 </div>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -99,7 +100,7 @@
               </div>
             </div>
           </div>
-          <a href="{{ route('customer') }}" class="btn btn-warning">Kembali</a>
+          <input type="hidden" name="user_id" value="{{ $current_user_id }}">
           <button class="btn btn-primary" type="submit">
             Simpan
           </button>

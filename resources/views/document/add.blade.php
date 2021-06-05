@@ -38,7 +38,8 @@
 </div>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-  <div class="card-header py-3">
+  <div class="card-header py-3 d-flex align-items-center">
+    <a href="{{ route('dokumen_pelanggan') }}" class="btn btn-warning btn-sm mr-2"><i class="fas fa-arrow-left"></i></a>
     <p class="m-0 font-weight-bold">Tambah Dokumen Pelanggan</p>
   </div>
   <div class="card-body">
@@ -117,7 +118,6 @@
           </div>
         </div>
       </div>
-      <a href="{{ route('dokumen_pelanggan') }}" class="btn btn-warning">Kembali</a>
       <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
   </div>

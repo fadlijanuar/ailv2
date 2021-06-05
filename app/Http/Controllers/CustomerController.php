@@ -23,7 +23,8 @@ class CustomerController extends Controller
     public function showAddForm()
     {
         if (Auth::check()) {
-            return view('customer.add');
+            $user_id = Auth::id();
+            return view('customer.add', ['current_user_id' => $user_id]);
         } else {
             return redirect()->route('login');
         }
@@ -64,6 +65,7 @@ class CustomerController extends Controller
         $customer->tgl_mutasi = $request->tgl_mutasi;
         $customer->jenis_layanan = $request->jenis_layanan;
         $customer->status_dil = $request->status_dil;
+        $customer->user_id = $request->user_id;
         $save = $customer->save();
 
         if ($save) {

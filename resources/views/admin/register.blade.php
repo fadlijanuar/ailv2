@@ -34,7 +34,6 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" name='nip' id="nip" placeholder="NIP">
                 </div>
-                {{-- TODO: Tambah Form Select Unit level 3 --}}
                 <div class="form-group">
                   <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address">
                 </div>
