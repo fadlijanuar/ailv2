@@ -1,5 +1,5 @@
 <?php
-// TODO: Memperbaiki edit dan delete level 2 dan level 1
+
 namespace App\Http\Controllers;
 
 use App\Models\KantorInduk;
@@ -310,6 +310,100 @@ class UnitController extends Controller
                 Session::flash('errors', ['' => 'Data unit berhasil diubah!']);
                 return redirect()->route('unit');
             }
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function showFromEditKantorInduk($id)
+    {
+        if (Auth::check()) {
+            $kantor_induk = KantorInduk::find($id);
+            return view('unit.editKantorInduk', ['kantor_induk' => $kantor_induk]);
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function editKantorInduk(Request $request)
+    {
+        if (Auth::check()) {
+            $rules = [
+                'wilayah_kerja' => 'required',
+                'kantor_induk' => 'required'
+            ];
+
+            $messages = [
+                'wilayah_kerja.required' => "Wilayah kerja wajib diisi",
+                'kantor_induk.required' => "Kantor induk wajib diisi"
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
+
+            $kantor_induk = KantorInduk::find($request->id);
+            $kantor_induk->wilayah_kerja = $request->wilayah_kerja;
+            $kantor_induk->nama_kantor_induk = $request->kantor_induk;
+            $isSave = $kantor_induk->save();
+
+            if ($isSave) {
+                Session::flash('success', 'Data kantor induk berhasil diubah!');
+                return redirect()->route('unit');
+            } else {
+                Session::flash('error', 'Data kantor induk gagal diubah!');
+                return redirect()->route('unit');
+            };
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function showFromEditUnitLevel2($id)
+    {
+        if (Auth::check()) {
+            $unit_level2 = UnitLevel2::find($id);
+            $kantor_induks = KantorInduk::all();
+            return view('unit.editUnitLevel2', [
+                'unit_level2' => $unit_level2,
+                'kantor_induks' => $kantor_induks
+            ]);
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function editUnitLevel2(Request $request)
+    {
+        if (Auth::check()) {
+            $rules = [
+                'kantor_induk_id' => 'required',
+                'unit_level2' => 'required'
+            ];
+
+            $messages = [
+                'unit_level2.required' => "Unit level 2 wajib diisi",
+                'kantor_induk_id.required' => "Kantor induk wajib diisi"
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput($request->all());
+            }
+
+            $unit_level2 = UnitLevel2::find($request->id);
+            $unit_level2->kantor_induk_id = $request->kantor_induk_id;
+            $unit_level2->nama_unit_level2 = $request->unit_level2;
+            $isSave = $unit_level2->save();
+
+            if ($isSave) {
+                Session::flash('success', 'Data unit level 2 berhasil diubah!');
+                return redirect()->route('unit');
+            } else {
+                Session::flash('error', 'Data unit level 2 gagal diubah!');
+                return redirect()->route('unit');
+            };
         } else {
             return redirect()->route('login');
         }

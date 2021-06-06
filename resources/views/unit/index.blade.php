@@ -119,7 +119,7 @@
                 <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
                   <form action="{{ url('/admin/unit', $unit->id) }}" method="post">
-                    <a href="{{ url('/admin/unit/edit', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+                    <a href="{{ url('/admin/unit/edit/unitlevel2', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
                     <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
                     @csrf
                     @method('delete')
@@ -157,7 +157,7 @@
                 <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
                   <form action="{{ url('/admin/unit', $unit->id) }}" method="post">
-                    <a href="{{ url('/admin/unit/edit', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+                    <a href="{{ url('/admin/unit/edit/kantorinduk', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
                     <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
                     @csrf
                     @method('delete')

@@ -49,7 +49,11 @@ Route::post('/admin/unit/add/kantorinduk', [UnitController::class, 'addKantorInd
 Route::get('/admin/unit/add', [UnitController::class, 'showFromAddUnit']);
 Route::delete('/admin/unit/{id}', [UnitController::class, 'delete']);
 Route::put('/admin/unit/edit', [UnitController::class, 'update'])->name('editUnit');
-Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit']);
+Route::get('/admin/unit/edit/kantorinduk/{id}', [UnitController::class, 'showFromEditKantorInduk']);
+Route::put('/admin/unit/edit/kantorinduk', [UnitController::class, 'editKantorInduk'])->name('editKantorInduk');
+Route::get('/admin/unit/edit/unitlevel2/{id}', [UnitController::class, 'showFromEditUnitLevel2']);
+Route::put('/admin/unit/edit/unitlevel2', [UnitController::class, 'editUnitLevel2'])->name('editUnitLevel2');
+Route::get('/admin/unit/edit/{id}', [UnitController::class, 'showFormEdit']); // untuk edit data level 3
 
 // Router Pelanggan
 Route::get('/admin/customer', [CustomerController::class, 'index'])->name('customer');
