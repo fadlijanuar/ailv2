@@ -20,12 +20,13 @@ class UnitController extends Controller
                 ->join('unit_level2', 'kantor_induk.id', '=', 'unit_level2.kantor_induk_id')
                 ->join('unit_level3', 'unit_level2.id', '=', 'unit_level3.unit_level2_id')
                 ->select('kantor_induk.*', 'unit_level2.*', 'unit_level3.*')
-                ->where('deleted_at', '=', null)
+                ->where('unit_level3.deleted_at', '=', null)
                 ->orderBy('unit_level3.id', 'desc')
                 ->get();
             $unit_level2 = DB::table('unit_level2')
                 ->join('kantor_induk', 'unit_level2.kantor_induk_id', '=', 'kantor_induk.id')
                 ->select('kantor_induk.*', 'unit_level2.*')
+                ->where('unit_level2.deleted_at', '=', null)
                 ->orderBy('unit_level2.id', 'desc')
                 ->get();
             $kantor_induk = KantorInduk::orderByDesc('id')->get();
@@ -239,11 +240,26 @@ class UnitController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
         if (Auth::check()) {
-            $unit_level3 = UnitLevel3::find($id)->delete();
-            if ($unit_level3) {
+
+            if ($request->type == 'UNIT_LEVEL3') {
+                $isDelete = UnitLevel3::find($request->id)->delete();
+            } else if ($request->type == 'UNIT_LEVEL2') {
+                UnitLevel3::where('unit_level2_id', $request->id)->delete();
+                $isDelete = UnitLevel2::find($request->id)->delete();
+            } else if ($request->type == 'UNIT_LEVEL1') {
+                $unit_level2 = UnitLevel2::where('kantor_induk_id', $request->id)->get();
+                foreach ($unit_level2 as $unit) {
+                    UnitLevel3::where('unit_level2_id', $unit->id)->delete();
+                }
+                UnitLevel2::where('kantor_induk_id', $request->id)->delete();
+                $isDelete = KantorInduk::find($request->id)->delete();
+            } else {
+                $isDelete = false;
+            }
+            if ($isDelete) {
                 Session::flash('warning', 'Data unit berhasil dihapus!');
                 return redirect()->route('unit');
             } else {

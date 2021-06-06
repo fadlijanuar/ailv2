@@ -57,6 +57,7 @@
       </div>
       <div class="card-body">
         <small>Info : Data yang tampil ditabel adalah data yang merujuk pada unit level 3 saja</small>
+        {{-- TABEL UNIT LEVEL 3 --}}
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -78,12 +79,10 @@
                 <td>{{ $unit->nama_unit_level3 }}</td>
                 <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
-                  <form action="{{ url('/admin/unit', $unit->id) }}" method="post">
-                    <a href="{{ url('/admin/unit/edit', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
-                    <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
-                    @csrf
-                    @method('delete')
-                  </form>
+                  <a href="{{ url('/admin/unit/edit', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+                  <a class="btn btn-danger btn-circle btn-sm button-delete" data-id="{{ $unit->id }}" data-type="UNIT_LEVEL3" data-toggle="modal" data-target="#deleteModal">
+                    <i class="fas fa-trash-alt fa-sm fa-fw"></i>
+                  </a>
                 </td>
               </tr>
               @endforeach
@@ -99,6 +98,7 @@
         <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/unit/add/unitlevel2') }}">Tambah Unit Level 2</a>
       </div>
       <div class="card-body">
+        {{-- TABEL UNIT LEVEL 2 --}}
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTableUnitLevel2" width="100%" cellspacing="0">
             <thead>
@@ -118,12 +118,10 @@
                 <td>{{ $unit->nama_unit_level2 }}</td>
                 <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
-                  <form action="{{ url('/admin/unit', $unit->id) }}" method="post">
-                    <a href="{{ url('/admin/unit/edit/unitlevel2', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
-                    <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
-                    @csrf
-                    @method('delete')
-                  </form>
+                  <a href="{{ url('/admin/unit/edit/unitlevel2', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+                  <a class="btn btn-danger btn-circle btn-sm button-delete" data-id="{{ $unit->id }}" data-type="UNIT_LEVEL2" data-toggle="modal" data-target="#deleteModal">
+                    <i class="fas fa-trash-alt fa-sm fa-fw"></i>
+                  </a>
                 </td>
               </tr>
               @endforeach
@@ -139,6 +137,7 @@
         <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/unit/add/kantorinduk') }}">Tambah Unit Kantor Induk</a>
       </div>
       <div class="card-body">
+        {{-- TABEL KANTOR INDUK --}}
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTableKantorInduk" width="100%" cellspacing="0">
             <thead>
@@ -156,12 +155,10 @@
                 <td>{{ $unit->nama_kantor_induk }}</td>
                 <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
-                  <form action="{{ url('/admin/unit', $unit->id) }}" method="post">
-                    <a href="{{ url('/admin/unit/edit/kantorinduk', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
-                    <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
-                    @csrf
-                    @method('delete')
-                  </form>
+                  <a href="{{ url('/admin/unit/edit/kantorinduk', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
+                  <a class="btn btn-danger btn-circle btn-sm button-delete" data-id="{{ $unit->id }}" data-type="UNIT_LEVEL1" data-toggle="modal" data-target="#deleteModal">
+                    <i class="fas fa-trash-alt fa-sm fa-fw"></i>
+                  </a>
                 </td>
               </tr>
               @endforeach
@@ -172,12 +169,71 @@
     </div>
   </div>
 </div>
+
+<!-- Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah anda yakin akan menghapus data?</p>
+        <small>Warning : Data yang terkait akan terhapus juga</small>
+      </div>
+      <div class="modal-footer">
+        <form action="{{ url('/admin/unit') }}" method="post">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <input type="text" name="type" id="type" class="type">
+          <input type="text" name="id" id="id" class="id">
+          <button type="submit" class="btn btn-danger">Hapus</button>
+          @csrf
+          @method('delete')
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('script')
 <script>
   $('#dataTableKantorInduk').dataTable()
   $('#dataTableUnitLevel2').dataTable()
+
+  $('#dataTable').on('click', '.button-delete', function() {
+    console.log('ok')
+
+    let id = $(this).data('id')
+    let type = $(this).data('type')
+
+    $('.id').val(id)
+    $('.type').val(type)
+  })
+
+  $('#dataTableUnitLevel2').on('click', '.button-delete', function() {
+    console.log('ok2')
+
+    let id = $(this).data('id')
+    let type = $(this).data('type')
+
+    $('.id').val(id)
+    $('.type').val(type)
+  })
+
+  $('#dataTableKantorInduk').on('click', '.button-delete', function() {
+    console.log('ok3')
+
+    let id = $(this).data('id')
+    let type = $(this).data('type')
+
+    $('.id').val(id)
+    $('.type').val(type)
+  })
 
 </script>
 @endsection
