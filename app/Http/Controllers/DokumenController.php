@@ -213,17 +213,6 @@ class DokumenController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dokumen  $dokumen
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dokumen $dokumen)
-    {
-        //
-    }
-
     private function updateFileUpload($request, $document, $folder)
     {
         // 1. Cek apakah user upload file
@@ -337,11 +326,73 @@ class DokumenController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dokumen  $dokumen
+     * @param  $dokumen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dokumen $dokumen)
+    public function destroy($id)
     {
-        //
+        if (Auth::check()) {
+            $customer = Customer::find($id);
+            // surat pengajuan
+            if ($customer->surat_pengajuan) {
+                File::delete(public_path('document_pelanggan/surat_pengajuan/' . $customer->surat_pengajuan));
+                $customer->surat_pengajuan = null;
+            }
+            // identitas pelanggan
+            if ($customer->identitas_pelanggan) {
+                File::delete(public_path('document_pelanggan/identitas_pelanggan/' . $customer->identitas_pelanggan));
+                $customer->identitas_pelanggan = null;
+            }
+            // formulir survei
+            if ($customer->formulir_survei) {
+                File::delete(public_path('document_pelanggan/formulir_survei/' . $customer->formulir_survei));
+                $customer->formulir_survei = null;
+            }
+            // jawaban persetujuan
+            if ($customer->jawaban_persetujuan) {
+                File::delete(public_path('document_pelanggan/jawaban_persetujuan/' . $customer->jawaban_persetujuan));
+                $customer->jawaban_persetujuan = null;
+            }
+            // surat pengajuan jual beli
+            if ($customer->surat_perjanjian_jual_beli) {
+                File::delete(public_path('document_pelanggan/surat_perjanjian_jual_beli/' . $customer->surat_perjanjian_jual_beli));
+                $customer->surat_perjanjian_jual_beli = null;
+            }
+            // sertifikat laik operasi
+            if ($customer->sertifikat_laik_operasi) {
+                File::delete(public_path('document_pelanggan/surat_laik_operasi/' . $customer->sertifikat_laik_operasi));
+                $customer->sertifikat_laik_operasi = null;
+            }
+            // kuitansi pembayaran
+            if ($customer->kuitansi_pembayaran) {
+                File::delete(public_path('document_pelanggan/kuitansi_pembayaran/' . $customer->kuitansi_pembayaran));
+                $customer->kuitansi_pembayaran = null;
+            }
+            // perintah kerja pemasangan
+            if ($customer->perintah_kerja_pemasangan) {
+                File::delete(public_path('document_pelanggan/perintah_kerja_pemasangan/' . $customer->perintah_kerja_pemasangan));
+                $customer->perintah_kerja_pemasangan = null;
+            }
+            // berita acara pemasangan
+            if ($customer->berita_acara_pemasangan) {
+                File::delete(public_path('document_pelanggan/berita_acara_pemasangan/' . $customer->berita_acara_pemasangan));
+                $customer->berita_acara_pemasangan = null;
+            }
+            // document lain
+            if ($customer->dokumen_lain) {
+                File::delete(public_path('document_pelanggan/dokumen_lain/' . $customer->dokumen_lain));
+                $customer->dokumen_lain = null;
+            }
+            $isSave = $customer->save();
+            if ($isSave) {
+                Session::flash('warning', 'Berhasil menghapus dokument pelanggan');
+                return redirect()->route('dokumen_pelanggan');
+            } else {
+                Session::flash('error', 'Gagal menghapus dokument pelanggan!');
+                return redirect()->route('dokumen_pelanggan');
+            }
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
