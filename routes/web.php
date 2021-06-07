@@ -68,4 +68,4 @@ Route::get('/admin/dokumen_pelanggan', 'App\Http\Controllers\DokumenController@i
 Route::get('/admin/dokumen_pelanggan/add', [DokumenController::class, 'create']);
 Route::post('/admin/dokumen_pelanggan/add', [DokumenController::class, 'store'])->name('add_dokumen_pelanggan');
 Route::get('/admin/dokumen_pelanggan/{id}', [DokumenController::class, 'show']);
-Route::put('/admin/dokumen_pelanggan/{id}', [DokumenController::class, 'update']);
+Route::put('/admin/dokumen_pelanggan', [DokumenController::class, 'update']);

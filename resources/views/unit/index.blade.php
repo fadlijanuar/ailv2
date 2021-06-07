@@ -187,8 +187,8 @@
       <div class="modal-footer">
         <form action="{{ url('/admin/unit') }}" method="post">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <input type="text" name="type" id="type" class="type">
-          <input type="text" name="id" id="id" class="id">
+          <input type="hidden" name="type" id="type" class="type">
+          <input type="hidden" name="id" id="id" class="id">
           <button type="submit" class="btn btn-danger">Hapus</button>
           @csrf
           @method('delete')
