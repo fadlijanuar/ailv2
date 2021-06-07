@@ -55,6 +55,21 @@ class DokumenController extends Controller
     }
 
     /**
+     * @param Object $request
+     * @param String $folder
+     * @return String $name_file
+     */
+
+    private function uploadFile($request, $folder)
+    {
+        if ($request) {
+            $file_name = Str::random(20) . "." . $request->extension();
+            $request->move(public_path("document_pelanggan/" . $folder), $file_name);
+            return $file_name;
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -106,85 +121,17 @@ class DokumenController extends Controller
         }
 
         $customer = Customer::where('id_pel', $request->id_pel)->first();
-        // upload document surat pengajuan
-        $surat_pengajuan = $request->surat_pengajuan;
-        if ($surat_pengajuan) {
-            $surat_pengajuan_name = Str::random(20) . "." . $surat_pengajuan->extension();
-            $surat_pengajuan->move(public_path("document_pelanggan/surat_pengajuan"), $surat_pengajuan_name);
-            $customer->surat_pengajuan = $surat_pengajuan_name ? $surat_pengajuan_name : null;
-        }
-
-        // upload document identitas pelanggan
-        $identitas_pelanggan = $request->identitas_pelanggan;
-        if ($identitas_pelanggan) {
-            $identitas_pelanggan_name = Str::random(20) . "." . $identitas_pelanggan->extension();
-            $identitas_pelanggan->move(public_path("document_pelanggan/identitas_pelanggan"), $identitas_pelanggan_name);
-            $customer->identitas_pelanggan = $identitas_pelanggan_name ? $identitas_pelanggan_name : null;
-        }
-
-        // upload document formulir survei
-        $formulir_survei = $request->formulir_survei;
-        if ($formulir_survei) {
-            $formulir_survei_name = Str::random(20) . "." . $formulir_survei->extension();
-            $formulir_survei->move(public_path("document_pelanggan/formulir_survei"), $formulir_survei_name);
-            $customer->formulir_survei = $formulir_survei_name ? $formulir_survei_name : null;
-        }
-
-        // upload document jawaban persetujuan
-        $jawaban_persetujuan = $request->jawaban_persetujuan;
-        if ($jawaban_persetujuan) {
-            $jawaban_persetujuan_name = Str::random(20) . "." . $jawaban_persetujuan->extension();
-            $jawaban_persetujuan->move(public_path("document_pelanggan/jawaban_persetujuan"), $jawaban_persetujuan_name);
-            $customer->jawaban_persetujuan = $jawaban_persetujuan_name ? $jawaban_persetujuan_name : null;
-        }
-
-        // upload document surat_perjanjian_jual_beli
-        $surat_perjanjian_jual_beli = $request->surat_perjanjian_jual_beli;
-        if ($surat_perjanjian_jual_beli) {
-            $surat_perjanjian_jual_beli_name = Str::random(20) . "." . $surat_perjanjian_jual_beli->extension();
-            $surat_perjanjian_jual_beli->move(public_path("document_pelanggan/surat_perjanjian_jual_beli"), $surat_perjanjian_jual_beli_name);
-            $customer->surat_perjanjian_jual_beli = $surat_perjanjian_jual_beli_name ? $surat_perjanjian_jual_beli_name : null;
-        }
-
-        // upload document surat_laik_operasi
-        $surat_laik_operasi = $request->surat_laik_operasi;
-        if ($surat_laik_operasi) {
-            $surat_laik_operasi_name = Str::random(20) . "." . $surat_laik_operasi->extension();
-            $surat_laik_operasi->move(public_path("document_pelanggan/surat_laik_operasi"), $surat_laik_operasi_name);
-            $customer->sertifikat_laik_operasi = $surat_laik_operasi_name ? $surat_laik_operasi_name : null;
-        }
-
-        // upload document kuitansi_pembayaran
-        $kuitansi_pembayaran = $request->kuitansi_pembayaran;
-        if ($kuitansi_pembayaran) {
-            $kuitansi_pembayaran_name = Str::random(20) . "." . $kuitansi_pembayaran->extension();
-            $kuitansi_pembayaran->move(public_path("document_pelanggan/kuitansi_pembayaran"), $kuitansi_pembayaran_name);
-            $customer->kuitansi_pembayaran = $kuitansi_pembayaran_name ? $kuitansi_pembayaran_name : null;
-        }
-
-        // upload document perintah_kerja_pemasangan
-        $perintah_kerja_pemasangan = $request->perintah_kerja_pemasangan;
-        if ($perintah_kerja_pemasangan) {
-            $perintah_kerja_pemasangan_name = Str::random(20) . "." . $perintah_kerja_pemasangan->extension();
-            $perintah_kerja_pemasangan->move(public_path("document_pelanggan/perintah_kerja_pemasangan"), $perintah_kerja_pemasangan_name);
-            $customer->perintah_kerja_pemasangan = $perintah_kerja_pemasangan_name ? $perintah_kerja_pemasangan_name : null;
-        }
-
-        // upload document perintah_kerja_pemasangan
-        $berita_acara_pemasangan = $request->berita_acara_pemasangan;
-        if ($berita_acara_pemasangan) {
-            $berita_acara_pemasangan_name = Str::random(20) . "." . $berita_acara_pemasangan->extension();
-            $berita_acara_pemasangan->move(public_path("document_pelanggan/berita_acara_pemasangan"), $berita_acara_pemasangan_name);
-            $customer->berita_acara_pemasangan = $berita_acara_pemasangan_name ? $berita_acara_pemasangan_name : null;
-        }
-
-        // upload document perintah_kerja_pemasangan
-        $dokumen_lain = $request->dokumen_lain;
-        if ($dokumen_lain) {
-            $dokumen_lain_name = Str::random(20) . "." . $dokumen_lain->extension();
-            $dokumen_lain->move(public_path("document_pelanggan/dokumen_lain"), $dokumen_lain_name);
-            $customer->dokumen_lain = $dokumen_lain_name ? $dokumen_lain_name : null;
-        }
+        // upload document 
+        $customer->surat_pengajuan = $this->uploadFile($request->surat_pengajuan, 'surat_pengajuan');
+        $customer->identitas_pelanggan = $this->uploadFile($request->identitas_pelanggan, 'identitas_pelanggan');
+        $customer->formulir_survei = $this->uploadFile($request->formulir_survei, 'formulir_survei');
+        $customer->jawaban_persetujuan = $this->uploadFile($request->jawaban_persetujuan, 'jawaban_persetujuan');
+        $customer->surat_perjanjian_jual_beli = $this->uploadFile($request->surat_perjanjian_jual_beli, 'surat_perjanjian_jual_beli');
+        $customer->sertifikat_laik_operasi = $this->uploadFile($request->surat_laik_operasi, 'surat_laik_operasi');
+        $customer->kuitansi_pembayaran = $this->uploadFile($request->kuitansi_pembayaran, 'kuitansi_pembayaran');
+        $customer->perintah_kerja_pemasangan = $this->uploadFile($request->perintah_kerja_pemasangan, 'perintah_kerja_pemasangan');
+        $customer->berita_acara_pemasangan = $this->uploadFile($request->berita_acara_pemasangan, 'berita_acara_pemasangan');
+        $customer->dokumen_lain = $this->uploadFile($request->dokumen_lain, 'dokumen_lain');
 
         $isSave = $customer->save();
 
