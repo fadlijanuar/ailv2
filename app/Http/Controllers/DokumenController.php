@@ -37,7 +37,7 @@ class DokumenController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            $id_pelanggan = Customer::where('surat_pengajuan', null)
+            $customers = Customer::where('surat_pengajuan', null)
                 ->where('identitas_pelanggan', null)
                 ->where('formulir_survei', null)
                 ->where('jawaban_persetujuan', null)
@@ -47,8 +47,8 @@ class DokumenController extends Controller
                 ->where('perintah_kerja_pemasangan', null)
                 ->where('berita_acara_pemasangan', null)
                 ->where('dokumen_lain', null)
-                ->get('id_pel');
-            return view('document.add', ['id_pelanggan' => $id_pelanggan]);
+                ->get(['id_pel', 'nama', 'nama_pnj']);
+            return view('document.add', ['customers' => $customers]);
         } else {
             return redirect()->route('login');
         }
