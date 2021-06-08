@@ -57,30 +57,28 @@
             </datalist>
           </div>
         </div>
-        <div class="col-md-6 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-text">
-                <table>
-                  <tr>
-                    <th class="pr-2">Nama</th>
-                    <td>:</td>
-                    <td class="pl-2" id="nama"></td>
-                  </tr>
-                  <tr>
-                    <th class="pr-2">Nama Penanggung Jawab</th>
-                    <td> : </td>
-                    <td class="pl-2" id="nama_pnj"></td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="surat_pengajuan">Surat Pengajuan Permintaan Penyambungan Baru / Perubahan Daya / Perubahan Data Pelanggan</label>
             <input type="file" class="form-control-file" id="surat_pengajuan" name="surat_pengajuan">
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <table>
+                <tr>
+                  <th class="pr-2">Nama</th>
+                  <td>:</td>
+                  <td class="pl-2" id="nama"></td>
+                </tr>
+                <tr>
+                  <th class="pr-2">Nama Penanggung Jawab</th>
+                  <td> : </td>
+                  <td class="pl-2" id="nama_pnj"></td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
