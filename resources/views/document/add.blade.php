@@ -49,9 +49,9 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="id_pel">ID Pelanggan</label>
-            <input type="number" name="id_pel" list="list_id_pel" class="form-control" placeholder="Masukan Id Pelanggan">
+            <input type="number" name="id_pel" id="id_pel" list="list_id_pel" class="form-control" placeholder="Masukan Id Pelanggan">
             <datalist id="list_id_pel">
-              @foreach($id_pelanggan as $key => $row)
+              @foreach($customers as $key => $row)
               <option value="{{ $row['id_pel'] }}">{{ $row['id_pel'] }}</option>
               @endforeach
             </datalist>
@@ -61,6 +61,24 @@
           <div class="form-group">
             <label for="surat_pengajuan">Surat Pengajuan Permintaan Penyambungan Baru / Perubahan Daya / Perubahan Data Pelanggan</label>
             <input type="file" class="form-control-file" id="surat_pengajuan" name="surat_pengajuan">
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <table>
+                <tr>
+                  <th class="pr-2">Nama</th>
+                  <td>:</td>
+                  <td class="pl-2" id="nama"></td>
+                </tr>
+                <tr>
+                  <th class="pr-2">Nama Penanggung Jawab</th>
+                  <td> : </td>
+                  <td class="pl-2" id="nama_pnj"></td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -122,4 +140,17 @@
     </form>
   </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+  $('#id_pel').on('change', function() {
+    const idPel = $(this).val();
+    const customers = @json($customers);
+    const result = customers.filter(customer => customer.id_pel == idPel)
+    $('#nama').html(result[0].nama)
+    $('#nama_pnj').html(result[0].nama_pnj)
+  })
+
+</script>
 @endsection
