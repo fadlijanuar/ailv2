@@ -79,16 +79,16 @@ class DokumenController extends Controller
     {
         $rules = [
             'id_pel' => 'required',
-            'surat_pengajuan' => 'mimes:pdf,doc,docx|max:500',
-            'identitas_pelanggan' => 'mimes:pdf,doc,docx|max:500',
-            'formulir_survei' => 'mimes:pdf,doc,docx|max:500',
-            'jawaban_persetujuan' => 'mimes:pdf,doc,docx|max:500',
-            'surat_perjanjian_jual_beli' => 'mimes:pdf,doc,docx|max:500',
-            'surat_laik_operasi' => 'mimes:pdf,doc,docx|max:500',
-            'kuitansi_pembayaran' => 'mimes:pdf,doc,docx|max:500',
-            'perintah_kerja_pemasangan' => 'mimes:pdf,doc,docx|max:500',
-            'berita_acara_pemasangan' => 'mimes:pdf,doc,docx|max:500',
-            'dokumen_lain' => 'mimes:pdf,doc,docx|max:500',
+            'surat_pengajuan' => 'mimes:pdf,doc,docx|max:100000',
+            'identitas_pelanggan' => 'mimes:pdf,doc,docx|max:100000',
+            'formulir_survei' => 'mimes:pdf,doc,docx|max:100000',
+            'jawaban_persetujuan' => 'mimes:pdf,doc,docx|max:100000',
+            'surat_perjanjian_jual_beli' => 'mimes:pdf,doc,docx|max:100000',
+            'surat_laik_operasi' => 'mimes:pdf,doc,docx|max:100000',
+            'kuitansi_pembayaran' => 'mimes:pdf,doc,docx|max:100000',
+            'perintah_kerja_pemasangan' => 'mimes:pdf,doc,docx|max:100000',
+            'berita_acara_pemasangan' => 'mimes:pdf,doc,docx|max:100000',
+            'dokumen_lain' => 'mimes:pdf,doc,docx|max:100000',
         ];
 
         $messages = [
@@ -103,16 +103,16 @@ class DokumenController extends Controller
             'perintah_kerja_pemasangan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
             'berita_acara_pemasangan.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
             'dokumen_lain.mimes' => 'File yang dapat diupload adalah pdf, doc, docx',
-            'surat_pengajuan.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'identitas_pelanggan.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'formulir_survei.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'jawaban_persetujuan.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'surat_perjanjian_jual_beli.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'surat_laik_operasi.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'kuitansi_pembayaran.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'perintah_kerja_pemasangan.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'berita_acara_pemasangan.max' => 'Ukuran file tidak boleh lebih dari 500kb',
-            'dokumen_lain.max' => 'Ukuran file tidak boleh lebih dari 500kb',
+            'surat_pengajuan.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'identitas_pelanggan.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'formulir_survei.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'jawaban_persetujuan.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'surat_perjanjian_jual_beli.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'surat_laik_operasi.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'kuitansi_pembayaran.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'perintah_kerja_pemasangan.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'berita_acara_pemasangan.max' => 'Ukuran file tidak boleh lebih dari 100mb',
+            'dokumen_lain.max' => 'Ukuran file tidak boleh lebih dari 100mb',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
