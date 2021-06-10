@@ -55,6 +55,13 @@
           <span>Dokumen Pelanggan</span></a>
       </li>
 
+      <!-- Nav Item Verify -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('verifikasi') }}">
+        <i class="fas fa-fw fa-clipboard-check"></i>
+          <span>Verifikasi</span></a>
+      </li>
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

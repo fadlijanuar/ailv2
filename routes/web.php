@@ -70,3 +70,11 @@ Route::post('/admin/dokumen_pelanggan/add', [DokumenController::class, 'store'])
 Route::get('/admin/dokumen_pelanggan/{id}', [DokumenController::class, 'show']);
 Route::put('/admin/dokumen_pelanggan', [DokumenController::class, 'update']);
 Route::delete('/admin/dokumen_pelanggan/{id}', [DokumenController::class, 'destroy']);
+
+// Route Verify
+Route::get('/admin/verifikasi', 'App\Http\Controllers\VerifikasiController@index')->name('verifikasi');
+Route::get('/admin/verifikasi/add', [VerifikasiController::class, 'showAddForm']);
+Route::post('/admin/verifikasi/add', [VerifikasiController::class, 'add'])->name('addCustomer');
+Route::get('/admin/verifikasi/edit/{id}', [VerifikasiController::class, 'showEditForm']);
+Route::post('/admin/verifikasi/edit', [VerifikasiController::class, 'edit'])->name('editCustomer');
+Route::delete('/admin/verifikasi/delete/{id}', [VerifikasiController::class, 'delete']);
