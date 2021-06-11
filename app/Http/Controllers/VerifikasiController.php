@@ -23,8 +23,8 @@ class VerifikasiController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $verifikasis = Verifikasi::all();
-            return view('verifikasi.index', ['verifikasis' => $verifikasis]);
+            $dokumen_pelanggan = Verifikasi::all();
+            return view('verifikasi.index', ['dokumen_pelanggan' => $dokumen_pelanggan]);
         } else {
             return redirect()->route('login');
         }

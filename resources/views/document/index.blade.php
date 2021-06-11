@@ -62,7 +62,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($customers as $key => $row)
+          @foreach($dokumen_pelanggan as $key => $row)
           <tr>
             <td>{{ $key+1 }}</td>
             <td>{{ $row->id_pel }}</td>
