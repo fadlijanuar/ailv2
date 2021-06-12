@@ -13,7 +13,7 @@ class CustomerController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $customers = Customer::orderByDesc('id')->get();
+            $customers = Customer::select(['IDPEL', 'NAMA', 'NAMAPNJ', 'TARIF', 'DAYA', 'TGLRUBAH_MK', 'JENISLAYANAN', 'STATUS_DIL'])->limit(10)->get();
             return view('customer.index', ['customers' => $customers]);
         } else {
             return redirect()->route('login');

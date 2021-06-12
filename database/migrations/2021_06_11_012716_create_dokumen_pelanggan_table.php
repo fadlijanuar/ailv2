@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTable extends Migration
+class CreateDokumenPelangganTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,10 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('dokumen_pelanggan', function (Blueprint $table) {
             $table->id();
             $table->string('id_pel')->unique();
-            $table->foreignId('user_id');
-            $table->string('nama');
-            $table->string('nama_pnj');
-            $table->string('tarif');
-            $table->integer('daya');
-            $table->string('jenis_mk');
-            $table->date('tgl_mutasi');
-            $table->string('jenis_layanan');
-            $table->enum('status_dil', ['aktif', 'hapus', 'bongkar']);
+            $table->string('unit_id')->nullable();
             $table->string('surat_pengajuan')->unique()->nullable();
             $table->string('identitas_pelanggan')->unique()->nullable();
             $table->string('formulir_survei')->unique()->nullable();
@@ -46,6 +38,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('dokumen_pelanggan');
     }
 }

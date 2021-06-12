@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class KantorInduk extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $table = 'kantor_induk';
 }

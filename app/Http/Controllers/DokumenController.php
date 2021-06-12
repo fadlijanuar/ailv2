@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Mockery\Undefined;
 
 class DokumenController extends Controller
 {
@@ -22,8 +21,8 @@ class DokumenController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $customers = Customer::all();
-            return view('document.index', ['customers' => $customers]);
+            $dokumen_pelanggan = Dokumen::all();
+            return view('document.index', ['dokumen_pelanggan' => $dokumen_pelanggan]);
         } else {
             return redirect()->route('login');
         }
@@ -37,7 +36,7 @@ class DokumenController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            $customers = Customer::where('surat_pengajuan', null)
+            $dokumen_pelanggan = Customer::where('surat_pengajuan', null)
                 ->where('identitas_pelanggan', null)
                 ->where('formulir_survei', null)
                 ->where('jawaban_persetujuan', null)
@@ -48,7 +47,7 @@ class DokumenController extends Controller
                 ->where('berita_acara_pemasangan', null)
                 ->where('dokumen_lain', null)
                 ->get(['id_pel', 'nama', 'nama_pnj']);
-            return view('document.add', ['customers' => $customers]);
+            return view('document.add', ['dokumen_pelanggan' => $dokumen_pelanggan]);
         } else {
             return redirect()->route('login');
         }

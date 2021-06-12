@@ -63,15 +63,15 @@
           @foreach($customers as $key => $row)
           <tr>
             <td>{{ $key +1 }}</td>
-            <td>{{ $row['id_pel'] }}</td>
-            <td>{{ $row['nama'] }}</td>
-            <td>{{ $row['nama_pnj'] }}</td>
-            <td>{{ $row['tarif'] }}</td>
-            <td>{{ $row['daya'] }}</td>
-            <td>{{ $row['jenis_mk'] }}</td>
-            <td>{{ date('d M Y', strtotime($row['tgl_mutasi'])) }}</td>
-            <td>{{ $row['jenis_layanan'] }}</td>
-            <td>{{ $row['status_dil'] }}</td>
+            <td>{{ $row['IDPEL'] }}</td>
+            <td>{{ $row['NAMA'] }}</td>
+            <td>{{ $row['NAMAPNJ'] }}</td>
+            <td>{{ $row['TARIF'] }}</td>
+            <td>{{ $row['DAYA'] }}</td>
+            <td>{{ $row['JENIS_MK'] }}</td>
+            <td>{{ date('d M Y', strtotime($row['TGLRUBAH_MK'])) }}</td>
+            <td>{{ $row['JENISLAYANAN'] }}</td>
+            <td>{{ $row['STATUS_DIL'] }}</td>
             <td>
               <form action="{{ url('admin/customer/delete/' . $row['id']) }}" method="post">
                 @csrf

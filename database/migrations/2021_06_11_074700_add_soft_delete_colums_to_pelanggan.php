@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeleteColumsToCustomers extends Migration
+class AddSoftDeleteColumsToPelanggan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddSoftDeleteColumsToCustomers extends Migration
      */
     public function up()
     {
-        Schema::table('customers', function (Blueprint $table) {
+        Schema::table('pelanggan', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -25,7 +25,7 @@ class AddSoftDeleteColumsToCustomers extends Migration
      */
     public function down()
     {
-        Schema::table('customers', function (Blueprint $table) {
+        Schema::table('pelanggan', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }
