@@ -74,10 +74,10 @@
               @foreach($units as $key => $unit)
               <tr>
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $unit->nama_kantor_induk }}</td>
-                <td>{{ $unit->nama_unit_level2 }}</td>
+                <td>{{ $unit->unitlevel2->kantorinduk->nama_kantor_induk }}</td>
+                <td>{{ $unit->unitlevel2->nama_unit_level2 }}</td>
                 <td>{{ $unit->nama_unit_level3 }}</td>
-                <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
+                <td>{{ $unit->unitlevel2->kantorinduk->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
                   <a href="{{ url('/admin/unit/edit', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
                   <a class="btn btn-danger btn-circle btn-sm button-delete" data-id="{{ $unit->id }}" data-type="UNIT_LEVEL3" data-toggle="modal" data-target="#deleteModal">
@@ -114,9 +114,9 @@
               @foreach($unit_level2 as $key => $unit)
               <tr>
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $unit->nama_kantor_induk }}</td>
+                <td>{{ $unit->kantorinduk->nama_kantor_induk }}</td>
                 <td>{{ $unit->nama_unit_level2 }}</td>
-                <td>{{ $unit->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
+                <td>{{ $unit->kantorinduk->wilayah_kerja == 1 ? 'Sumut 1' : 'Sumut 2'  }}</td>
                 <td>
                   <a href="{{ url('/admin/unit/edit/unitlevel2', $unit->id) }}" class="btn btn-warning btn-sm btn-circle"><i class="fa fa-pen"></i></a>
                   <a class="btn btn-danger btn-circle btn-sm button-delete" data-id="{{ $unit->id }}" data-type="UNIT_LEVEL2" data-toggle="modal" data-target="#deleteModal">

@@ -10,4 +10,9 @@ class KantorInduk extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'kantor_induk';
+
+    public function unitLevel2()
+    {
+        return $this->hasMany(UnitLevel2::class, 'kantor_induk_id');
+    }
 }

@@ -16,19 +16,8 @@ class UnitController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $unit_level3 = DB::table('kantor_induk')
-                ->join('unit_level2', 'kantor_induk.id', '=', 'unit_level2.kantor_induk_id')
-                ->join('unit_level3', 'unit_level2.id', '=', 'unit_level3.unit_level2_id')
-                ->select('kantor_induk.*', 'unit_level2.*', 'unit_level3.*')
-                ->where('unit_level3.deleted_at', '=', null)
-                ->orderBy('unit_level3.id', 'desc')
-                ->get();
-            $unit_level2 = DB::table('unit_level2')
-                ->join('kantor_induk', 'unit_level2.kantor_induk_id', '=', 'kantor_induk.id')
-                ->select('kantor_induk.*', 'unit_level2.*')
-                ->where('unit_level2.deleted_at', '=', null)
-                ->orderBy('unit_level2.id', 'desc')
-                ->get();
+            $unit_level3 = UnitLevel3::orderByDesc('id')->limit(500)->get();
+            $unit_level2 = UnitLevel2::orderByDesc('id')->limit(500)->get();
             $kantor_induk = KantorInduk::orderByDesc('id')->get();
             return view('unit.index', [
                 'units' => $unit_level3,
