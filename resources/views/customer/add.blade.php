@@ -25,7 +25,8 @@
     <div class="row">
       <div class="col-md-12">
         <form action="{{ route('addCustomer') }}" method="post" enctype="multipart/form-data">
-          @csrf
+
+				@csrf
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -85,7 +86,11 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
-                <input type="text" class="form-control" id="jenis_layanan" name="jenis_layanan" placeholder="Masukan jenis layanan">
+								<select class="form-control" id="jenis_layanan" name="jenis_layanan" >
+									<option value="">-- Pilih jenis layanan --</option>
+									<option value="PRABAYAR"> PRABAYAR </option>
+									<option value="PASCABAYAR"> PASCABAYAR </option>
+								</select> 
               </div>
             </div>
             <div class="col-md-6">
@@ -100,7 +105,7 @@
               </div>
             </div>
           </div>
-          <input type="hidden" name="user_id" value="{{ $current_user_id }}">
+          <input type="hidden" name="unit_id" value="{{ $current_unit_id_user }}">
           <button class="btn btn-primary" type="submit">
             Simpan
           </button>

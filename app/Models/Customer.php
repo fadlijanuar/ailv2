@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-    use HasFactory, SoftDeletes;
+		use HasFactory, SoftDeletes;
     protected $table = 'pelanggan';
+
+    protected $fillable = [
+        'IDPEL',
+        'NAMA',
+        'NAMAPNJ',
+        'TARIF',
+        'DAYA',
+        'JENIS_MK',
+        'TGLRUBAH_MK',
+        'JENISLAYANAN',
+        'STATUS_DIL'
+    ];
+
+		public $timestamps = false;
 }

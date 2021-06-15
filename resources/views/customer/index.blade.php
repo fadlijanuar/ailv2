@@ -40,10 +40,44 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <a class="m-0 btn btn-primary btn-sm font-weight-bold" href="{{ url('/admin/customer/add') }}">Tambah Pelanggan</a>
+    <form action="" method="post" class="mt-3" id="filter">
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <label for="daya">Daya</label>
+          <select id="daya" name='daya' class="form-control form-control-sm" required>
+            <option value="">Daya</option>
+						<option value="0-1000">0 - 1000</option>
+						<option value="1001-2500">1001 - 2500</option>
+            <option value="251-5000">2501 - 5000</option>
+            <option value="5001-10000">5001 - 10000</option>
+            <option value="10001-100000">10001 - 100000</option>
+            <option value="1000001-500000">1000001 - 500000</option>
+            <option value="500001-100000000000">500001 Ke atas</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="tgl_mutasi">Tanggal Mutasi</label>
+          <input type="text" name="tgl_mutasi" id="tgl_mutasi" class="form-control form-control-sm" placeholder="Range Taggal" required>
+        </div>
+				
+				<div class="form-group col-md-3">
+					<label for="tgl_mutasi">Mencari Nama</label>
+					<input type="text" name="nama" id="nama" class="form-control form-control-sm" placeholder="Masukan nama" required autocomplete="off">	
+				</div>
+
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-1">
+          <button type="submit" class="btn btn-primary btn-sm" id="btn-filter">Filter</button>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered table-customers" id="dataTable-customers" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>NO.</th>
@@ -60,31 +94,92 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($customers as $key => $row)
-          <tr>
-            <td>{{ $key +1 }}</td>
-            <td>{{ $row['IDPEL'] }}</td>
-            <td>{{ $row['NAMA'] }}</td>
-            <td>{{ $row['NAMAPNJ'] }}</td>
-            <td>{{ $row['TARIF'] }}</td>
-            <td>{{ $row['DAYA'] }}</td>
-            <td>{{ $row['JENIS_MK'] }}</td>
-            <td>{{ date('d M Y', strtotime($row['TGLRUBAH_MK'])) }}</td>
-            <td>{{ $row['JENISLAYANAN'] }}</td>
-            <td>{{ $row['STATUS_DIL'] }}</td>
-            <td>
-              <form action="{{ url('admin/customer/delete/' . $row['id']) }}" method="post">
-                @csrf
-                @method('delete')
-                <a class="btn btn-warning btn-sm btn-circle" href="{{ url('admin/customer/edit/'.$row['id']) }}"><i class="fa fa-edit"></i></a>
-                <button type="submit" class="btn btn-danger btn-sm btn-circle"><i class="fa fa-trash"></i></button>
-              </form>
-            </td>
-          </tr>
-          @endforeach
         </tbody>
       </table>
     </div>
   </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+  $(function() {
+
+    let startDate = '';
+    let endDate = '';
+
+    $('input[name="tgl_mutasi"]').daterangepicker({
+      autoUpdateInput: false
+      , locale: {
+        cancelLabel: 'Clear'
+      }
+    });
+
+    $('input[name="tgl_mutasi"]').on('apply.daterangepicker', function(ev, picker) {
+      startDate = picker.startDate.format('YYYY-MM-DD')
+      endDate = picker.endDate.format('YYYY-MM-DD')
+      $(this).val(startDate + ' - ' + endDate);
+    });
+
+
+    var table = $('#dataTable-customers').DataTable({
+			searching: false,
+      responsive: true,
+			scrollX: true, 
+			processing: true, 
+			serverSide: true, 
+			ajax: {
+			url: "{{ route('customer') }}",
+				data: function(data) {
+					data.daya = $('#daya').val()
+					data.startDate = startDate
+					data.endDate = endDate
+					data.nama = $('#nama').val()
+				}
+      }, 
+			columns: [{
+          data: 'DT_RowIndex', 
+					name: 'DT_RowIndex'
+      	}, {
+          data: 'IDPEL', 
+					nama: 'IDPEL'
+     	 	}, {
+          data: 'NAMA', 
+					name: 'NAMA'
+        }, {
+          data: 'NAMAPNJ', 
+					name: 'NAMAPNJ'
+        }, {
+          data: 'TARIF', 
+					name: 'TARIF'
+        }, {
+          data: 'DAYA', 
+					name: 'DAYA'
+        }, {
+          data: 'JENIS_MK', 
+					name: 'JENIS_MK'
+        }, {
+          data: 'TGLRUBAH_MK', 
+					name: 'TGLRUBAH_MK'
+        }, {
+          data: 'JENISLAYANAN', 
+					name: 'JENISLAYANAN'
+        }, {
+          data: 'STATUS_DIL', 
+					name: 'STATUS_DIL'
+        }, {
+          data: 'actions', 
+					name: 'actions'
+        }
+      ]
+    })
+
+    $('#filter').on('submit', function(e) {
+      e.preventDefault();
+			table.draw()
+		})
+
+  })
+
+</script>
 @endsection
